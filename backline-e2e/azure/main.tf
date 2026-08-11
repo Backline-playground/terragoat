@@ -28,12 +28,12 @@ resource "azurerm_resource_group" "example" {
   location = "eastus"
 }
 
-# Deliberately missing https_traffic_only_enabled and min_tls_version: that gap is
-# what enable_encryption_in_transit fixes.
 resource "azurerm_storage_account" "example" {
-  name                     = "tgsadev12345"
-  resource_group_name      = azurerm_resource_group.example.name
-  location                 = azurerm_resource_group.example.location
-  account_tier             = "Standard"
-  account_replication_type = "GRS"
+  name                       = "tgsadev12345"
+  resource_group_name        = azurerm_resource_group.example.name
+  location                   = azurerm_resource_group.example.location
+  account_tier               = "Standard"
+  account_replication_type   = "GRS"
+  https_traffic_only_enabled = true
+  min_tls_version            = "TLS1_2"
 }
