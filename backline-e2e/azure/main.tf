@@ -10,6 +10,15 @@
 
 terraform {
   required_version = ">= 1.5"
+
+  # Declared so state-backend discovery can find this root by parsing HCL, rather
+  # than the root depending on a manual registration.
+  backend "s3" {
+    bucket = "backline-iac-e2e"
+    key    = "terraform/azure-e2e.tfstate"
+    region = "us-east-1"
+  }
+
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
